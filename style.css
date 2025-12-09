@@ -1,0 +1,473 @@
+/* RESET E CONFIGURAÇÕES GERAIS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+:root {
+    --azul: #004d99;
+    --laranja: #ff6600;
+    --verde-whatsapp: #25D366;
+    --bg-claro: #ffffff;
+    --bg-escuro: #f4f7f9;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.section h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--azul);
+}
+
+/* CORES E FUNDOS */
+.dark-bg {
+    background-color: var(--bg-escuro);
+}
+
+.light-bg {
+    background-color: var(--bg-claro);
+}
+
+/* HEADER/HERO */
+.hero {
+    background: radial-gradient(ellipse at 30% 10%, rgba(0,77,153,0.6), rgba(0,0,0,0.6)), url('seu-background-comercial.jpg') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    padding: 150px 0;
+}
+
+.hero-title {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    font-weight: 900;
+}
+
+.hero-subtitle {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--laranja);
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 700;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    background-color: #cc5200;
+}
+
+.cta-button.secondary {
+    margin-left: 15px;
+    background-color: transparent;
+    border: 2px solid #fff;
+}
+
+.cta-button.secondary:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* CARDS (SEÇÃO DESAFIO) */
+.card-grid {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    flex: 1;
+    max-width: 350px;
+    text-align: center;
+}
+
+.card h3 {
+    color: #ff6600;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+/* FRENTES DE IA (SEÇÃO SOLUÇÃO) */
+.frentes-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    text-align: center;
+}
+
+.frente-item {
+    flex: 1;
+    padding: 20px;
+    border-left: 3px solid var(--azul);
+}
+
+.frente-icon {
+    font-size: 3em;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* ARQUITETURA */
+.arquitetura-grid {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+.arquitetura-item {
+    flex: 1;
+    max-width: 300px;
+    text-align: center;
+    padding: 40px 20px;
+    background: #e6f2ff;
+    border-radius: 10px;
+}
+
+.arquitetura-number {
+    display: inline-block;
+    background: var(--azul);
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* ROADMAP TABLE */
+.roadmap-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.roadmap-table th, .roadmap-table td {
+    padding: 18px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.roadmap-table th {
+    background-color: var(--azul);
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.roadmap-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* INSIGHTS (BLOCKQUOTES) */
+.insight-quote {
+    background: #f0f8ff;
+    padding: 30px;
+    margin: 20px auto;
+    border-left: 5px solid #ff6600;
+    font-style: italic;
+    font-size: 1.1em;
+    line-height: 1.8;
+    max-width: 800px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* CTA FINAL */
+.final-cta {
+    background-color: #004d99;
+    color: #fff;
+    text-align: center;
+    padding: 60px 0;
+}
+
+.final-cta h2 {
+    color: #fff;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    max-width: 500px;
+    margin: 30px auto 0;
+}
+
+.contact-form input {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.contact-form .cta-button {
+    width: 100%;
+    background-color: #ff6600;
+}
+
+/* RODAPÉ */
+footer {
+    background-color: #222;
+    color: #aaa;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9em;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 900px) {
+    .card-grid, .frentes-grid, .arquitetura-grid {
+        flex-direction: column;
+    }
+    
+    .card, .frente-item, .arquitetura-item {
+        max-width: 100%;
+    }
+
+    .hero {
+        padding: 100px 0;
+    }
+
+    .hero-title {
+        font-size: 2.5em;
+    }
+
+    .section h2 {
+        font-size: 1.8em;
+    }
+
+    .roadmap-table th, .roadmap-table td {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+}
+
+/* --- ESTILOS PARA DETALHAMENTO DE IA (NOVA SEÇÃO) --- */
+
+.detalhe-intro {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.1em;
+}
+
+.ia-detalhe {
+    background: #fff;
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ia-detalhe h3 {
+    color: var(--azul);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #e6f2ff;
+    padding-bottom: 10px;
+}
+
+.ia-detalhe p {
+    margin-bottom: 10px;
+}
+
+.ia-detalhe ul {
+    list-style-type: disc;
+    margin-left: 25px;
+    margin-bottom: 15px;
+}
+
+/* Estilo para os números/links na Seção 3: Arquitetura */
+.arquitetura-number {
+    /* Manter o estilo visual de círculo, mas adicionar efeito de link */
+    display: inline-block;
+    background: #004d99;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-decoration: none; /* Remover sublinhado padrão do link */
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.arquitetura-number:hover {
+    background: var(--laranja);
+}
+
+/* Botão de Retorno */
+.return-button {
+    background-color: var(--laranja);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.return-button:hover {
+    background-color: #cc5200;
+}
+
+/* Efeito de Destaque Rápido (usado no JS) */
+.highlight {
+    box-shadow: 0 0 0 4px rgba(255, 102, 0, 0.5) !important;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* IDs de Âncoras para retorno (opcional, para visualização de destaque) */
+#origem-geo, #origem-ml, #origem-llm {
+    /* Adiciona um ID de âncora invisível que pode ser destacado */
+    padding: 1px; /* Para garantir que o box-shadow funcione */
+    border-radius: 50%;
+}
+
+/* ESTILO DO BOTÃO FLUTUANTE DO WHATSAPP */
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--verde-whatsapp);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.whatsapp-button img {
+    width: 35px; /* Tamanho do ícone */
+    height: 35px;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+}
+
+/* --- ESTILO PARA O BOTÃO WHATSAPP NO HERO --- */
+
+.cta-whatsapp-hero {
+    /* Herda o posicionamento do cta-button original */
+    display: inline-flex; 
+    align-items: center; /* Centraliza verticalmente o ícone e o texto */
+    gap: 10px; /* Espaço entre o ícone e o texto */
+    
+    /* Cores e dimensões */
+    background-color: var(--verde-whatsapp);
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 700;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-whatsapp-hero:hover {
+    background-color: #1FAF59;
+}
+
+.cta-whatsapp-hero img {
+    width: 20px; /* Ajuste o tamanho do ícone */
+    height: 20px;
+}
+
+.skip-link {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.skip-link:focus {
+    left: 20px;
+    top: 20px;
+    width: auto;
+    height: auto;
+    background: #000;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.reveal { opacity: 0; transform: translateY(24px); }
+.reveal.revealed { opacity: 1; transform: translateY(0); transition: opacity .6s ease, transform .6s ease; }
+
+.diagnostico-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 2000;
+}
+.diagnostico-dialog {
+    background: #fff;
+    max-width: 720px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    padding: 24px;
+}
+.diagnostico-fechar {
+    position: absolute;
+    right: 28px;
+    top: 18px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+.diagnostico-sub { text-align: center; margin-bottom: 16px; }
+.diagnostico-resultado { margin-top: 18px; }
+.diagnostico-resultado h3 { color: var(--azul); margin-bottom: 8px; }
+.diagnostico-modal[aria-hidden="false"] { display: flex; }
