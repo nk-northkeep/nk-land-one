@@ -1,10 +1,10 @@
-# Axe Land IA Comercial — Landing Page
+# Axe Land IA Estratégica — Landing Page
 
-Landing page profissional para IA Comercial Estratégica, focada em identificar gaps comerciais, prever vendas e orientar ações prescritivas. Construída com HTML/CSS/JS puro para desempenho, SEO e rápida publicação em Nginx com Cloudflare.
+Landing page profissional para IA Estratégica, focada em identificar gargalos, antecipar riscos e orientar ações prescritivas em múltiplas áreas do negócio. Construída com HTML, CSS e JavaScript puros para desempenho, SEO e rápida publicação em Nginx com Cloudflare.
 
 ## Recursos
-- Narrativa baseada em dores reais do comercial e 4 frentes de IA
-- Arquitetura tríade: Geoespacial, ML Preditivo e IA Generativa
+- Narrativa baseada em dores reais da operação e quatro frentes de IA
+- Arquitetura integrada: dados de negócio, ML preditivo e IA generativa
 - Modal de Diagnóstico Rápido com integração direta ao WhatsApp
 - Animações suaves de entrada e acessibilidade aprimorada
 - Metadados SEO, Open Graph e JSON-LD
@@ -12,7 +12,7 @@ Landing page profissional para IA Comercial Estratégica, focada em identificar 
 ## Estrutura
 - `index.html` — página principal
 - `style.css` — estilos responsivos e animações
-- `script.js` — interações, modal e integração WhatsApp
+- `script.js` — interações, modal e integração com WhatsApp
 - `whatsapp-icon.png`, `whatsapp-icon-white.png`, `favicon.ico`
 - `.trae/documents/*.md` — PRD e Arquitetura técnica
 
@@ -34,14 +34,14 @@ Detalhes e exemplo de configuração em `./.trae/documents/technical-architectur
 ```bash
 git init
 git add .
-git commit -m "feat: landing page IA Comercial"
+git commit -m "feat: landing page IA Estratégica"
 git branch -M main
 git remote add origin https://github.com/<usuario>/<repositorio>.git
 git push -u origin main
 ```
 
 ## Ajustes Recomendados
-- Substituir `seu-background-comercial.jpg` por imagem WebP otimizada
+- Substituir a imagem de fundo por um asset WebP otimizado
 - Incluir logos/depoimentos de clientes para prova social
 - Adicionar camada leve de analytics (apenas eventos de click/visão de seção)
 

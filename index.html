@@ -3,26 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IA Comercial Estratégica | Acelerando o Crescimento</title>
-    <meta name="description" content="Diagnóstico de gaps comerciais, previsões confiáveis e recomendações prescritivas com IA para acelerar crescimento e foco de vendas.">
-    <meta name="theme-color" content="#004d99">
+    <title>IA Estratégica para Operações, Gestão e Crescimento | AXE Tecnologia</title>
+    <meta name="description" content="Centralize sinais do negócio, identifique gargalos, antecipe riscos e priorize ações com IA em uma experiência executiva, governada e pronta para escalar entre operações, comercial, atendimento e gestão.">
+    <meta name="theme-color" content="#07111f">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="IA Estratégica para Operações, Gestão e Crescimento | AXE Tecnologia">
+    <meta property="og:description" content="Uma experiência executiva para consolidar dados, ampliar previsibilidade e transformar sinais do negócio em ações priorizadas.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="AXE Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="IA Estratégica para Operações, Gestão e Crescimento | AXE Tecnologia">
+    <meta name="twitter:description" content="Consolide dados, antecipe riscos e priorize ações com IA em uma experiência executiva pronta para múltiplas áreas do negócio.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="design-system/tokens.css">
+    <link rel="stylesheet" href="design-system/base.css">
+    <link rel="stylesheet" href="design-system/components.css">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
-	<link rel="shortcut icon" href="favicon.ico">
-    <meta property="og:title" content="IA Comercial Estratégica">
-    <meta property="og:description" content="Auxiliamos sua área comercial a identificar gaps, prever vendas e agir com recomendações da IA.">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="site-support.css">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Axe Land IA Comercial",
-      "url": "",
-      "logo": "favicon.ico",
-      "sameAs": []
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "AXE Tecnologia",
+          "url": "https://axetecnologia.com.br/",
+          "logo": "https://axetecnologia.com.br/favicon.ico",
+          "sameAs": [
+            "https://axetecnologia.com.br/",
+            "https://evobi.axetecnologia.com.br/"
+          ]
+        },
+        {
+          "@type": "Service",
+          "name": "IA Estratégica AXE",
+          "serviceType": "Plataforma de inteligência aplicada ao negócio",
+          "provider": {
+            "@type": "Organization",
+            "name": "AXE Tecnologia"
+          },
+          "areaServed": "BR",
+          "audience": {
+            "@type": "BusinessAudience",
+            "audienceType": "Empresas que buscam ganho de previsibilidade, governança e priorização"
+          },
+          "description": "Solução de IA estratégica para consolidar dados, identificar gargalos, antecipar riscos e recomendar ações em múltiplas áreas do negócio."
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Quanto tempo leva para colocar um MVP em produção?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Em cenários com bases já disponíveis em ERP, BI, CRM ou sistemas operacionais, é possível estruturar um MVP em 30 a 60 dias."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quais dados são necessários para começar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "O ponto de partida normalmente combina dados transacionais, indicadores de negócio e contexto operacional. A profundidade evolui conforme a maturidade da base."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Como a governança da IA é tratada?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A solução parte de dados auditáveis, modelos interpretáveis e validação humana nas decisões estratégicas, reduzindo risco e aumentando confiança na adoção."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
     <script defer src="script.js"></script>
@@ -30,238 +90,424 @@
 <body>
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
-    <header class="hero">
+    <header class="hero-shell">
         <div class="container">
-            <h1 class="hero-title">Acelerando o Crescimento Comercial com IA</h1>
-            <p class="hero-subtitle">Inteligência que Transforma Vendas: Conheça a Análise Comercial 5D.</p>
-            <a href="https://wa.me/5547999958705?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20Diagn%C3%B3stico%20Estrat%C3%A9gico%20de%20IA%20Comercial." class="cta-whatsapp-hero" target="_blank">
-				<img src="whatsapp-icon-white.png" alt="WhatsApp" loading="lazy">
-				Fale Agora com um Consultor
-			</a>
-            <button class="cta-button secondary" id="abrir-diagnostico" aria-controls="diagnostico" aria-expanded="false">Fazer Diagnóstico Rápido</button>
+            <nav class="site-nav" data-sticky-nav>
+                <a class="brand" href="#topo" aria-label="AXE Tecnologia">
+                    <span class="brand-mark">AXE</span>
+                    <span class="brand-copy">
+                        <strong>IA Estratégica</strong>
+                        <span>AXE Tecnologia</span>
+                    </span>
+                </a>
+                <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+                    Menu
+                </button>
+                <div class="nav-links" id="menu-principal">
+                    <a href="#solucao">Solução</a>
+                    <a href="#arquitetura">Arquitetura</a>
+                    <a href="#roadmap">Roadmap</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#governanca">Governança</a>
+                    <a class="ds-button ds-button-secondary nav-cta" href="https://wa.me/5547999958705?text=Ola%2C%20quero%20entender%20a%20solucao%20de%20IA%20Estrategica." target="_blank" rel="noopener noreferrer">
+                        Agendar diagnóstico
+                    </a>
+                </div>
+            </nav>
+
+            <div class="hero-grid" id="topo">
+                <div class="hero-copy reveal">
+                    <span class="eyebrow">Pronta para estratégia orientada por dados</span>
+                    <h1>A plataforma executiva para transformar dados do negócio em decisões priorizadas e escaláveis.</h1>
+                    <p class="hero-text">
+                        Reúna sinais de operação, clientes, processos e performance em uma única camada de leitura executiva.
+                        Cruze BI, dados transacionais, contexto geoespacial, machine learning e IA generativa para entender o que aconteceu,
+                        por que aconteceu e qual ação deve entrar primeiro no plano.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="ds-button ds-button-primary" href="https://wa.me/5547999958705?text=Ola%2C%20quero%20solicitar%20um%20diagnostico%20de%20IA%20Estrategica." target="_blank" rel="noopener noreferrer">
+                            Solicitar diagnóstico executivo
+                        </a>
+                        <button class="ds-button ds-button-ghost" id="abrir-diagnostico" aria-controls="diagnostico" aria-expanded="false">
+                            Receber recomendação inicial
+                        </button>
+                    </div>
+                    <div class="hero-pills">
+                        <span class="ds-badge ds-badge-info">Dados ERP + BI</span>
+                        <span class="ds-badge ds-badge-neutral">Governança e auditoria</span>
+                        <span class="ds-badge ds-badge-info">IA explicável e generativa</span>
+                    </div>
+                </div>
+
+                <aside class="hero-panel reveal">
+                    <div class="hero-panel-card ds-card">
+                        <div class="panel-label">O que a plataforma viabiliza</div>
+                        <ul class="panel-list">
+                            <li>Mapa de gargalos e oportunidades por área, região, processo e unidade.</li>
+                            <li>Alertas de risco, queda de performance e anomalias antes que o impacto chegue ao resultado.</li>
+                            <li>Recomendações acionáveis com linguagem executiva para operações, comercial, financeiro e liderança.</li>
+                        </ul>
+                    </div>
+                    <div class="hero-stats">
+                        <article class="metric-card ds-card">
+                            <strong>4 frentes</strong>
+                            <span>Descritiva, diagnóstica, preditiva e prescritiva</span>
+                        </article>
+                        <article class="metric-card ds-card">
+                            <strong>60 dias</strong>
+                            <span>Para estruturar um MVP com ganhos visíveis</span>
+                        </article>
+                        <article class="metric-card ds-card">
+                            <strong>1 jornada</strong>
+                            <span>IA recomenda, a liderança valida e a operação evolui</span>
+                        </article>
+                    </div>
+                </aside>
+            </div>
         </div>
     </header>
+
     <main id="conteudo">
-
-    <section id="desafio" class="section dark-bg reveal">
-        <div class="container">
-            <h2>Você está vendo 100% das oportunidades do seu território?</h2>
-            <div class="card-grid">
-                <div class="card">
-                    <h3>Onde estamos perdendo?</h3>
-                    <p>Falta de visibilidade exata sobre regiões sem vendas e potencial de mercado não explorado.</p>
+        <section class="section surface-section reveal" id="dores">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Principais dores da operação</span>
+                    <h2>Quando os sinais ficam espalhados, a operação perde velocidade, previsibilidade e capacidade de resposta.</h2>
+                    <p>O cenário mais comum começa com dados dispersos, pouca visibilidade entre áreas, priorização difusa e reação tardia a risco, gargalo e oportunidade.</p>
                 </div>
-                <div class="card">
-                    <h3>Falta de Previsibilidade?</h3>
-                    <p>Ausência de alertas automáticos de queda, risco ou oportunidade antes que o faturamento seja afetado.</p>
-                </div>
-                <div class="card">
-                    <h3>Foco Ineficiente?</h3>
-                    <p>Dificuldade em priorizar o esforço comercial e identificar incoerências entre representantes e territórios.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="solucao" class="section light-bg reveal">
-        <div class="container">
-            <h2>A Solução: As 4 Frentes de Inteligência da IA Comercial</h2>
-            <div class="frentes-grid">
-                <div class="frente-item">
-                    <span class="frente-icon">🔍</span>
-                    <h3>Descritiva</h3>
-                    <p>O que está acontecendo? (Gaps, Ranking de Potencial, Anomalias).</p>
-                </div>
-                <div class="frente-item">
-                    <span class="frente-icon">💡</span>
-                    <h3>Diagnóstica</h3>
-                    <p>Por que está acontecendo? (Fatores Explicativos com Modelos SHAP/LIME).</p>
-                </div>
-                <div class="frente-item">
-                    <span class="frente-icon">🔮</span>
-                    <h3>Preditiva</h3>
-                    <p>O que acontecerá? (Previsão de Vendas, Risco de Churn).</p>
-                </div>
-                <div class="frente-item">
-                    <span class="frente-icon">🎯</span>
-                    <h3>Prescritiva</h3>
-                    <p>O que devemos fazer? (Recomendações Acionáveis e Otimização de Foco).</p>
+                <div class="grid grid-3">
+                    <article class="ds-card insight-card">
+                        <h3>Processos sem leitura clara</h3>
+                        <p>Unidades, áreas e fluxos com baixo desempenho passam despercebidos entre planilhas, dashboards isolados e decisões baseadas apenas em percepção.</p>
+                    </article>
+                    <article class="ds-card insight-card">
+                        <h3>Baixa previsibilidade</h3>
+                        <p>Sem alertas confiáveis, desvios de demanda, risco de churn, atrasos e quedas de performance só aparecem quando o resultado já foi impactado.</p>
+                    </article>
+                    <article class="ds-card insight-card">
+                        <h3>Priorização ineficiente</h3>
+                        <p>Times e gestores gastam energia nas frentes erradas porque falta uma camada analítica e prescritiva indicando a próxima melhor ação.</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-	<section id="arquitetura" class="section reveal">
-        <div class="container">
-            <h2>A Tríade da Performance: Geoespacial + ML + IA Generativa</h2>
-            <div class="arquitetura-grid">
-                <div class="arquitetura-item">
-                    <a href="#detalhes-ia" onclick="salvarOrigem('origem-geo')" class="arquitetura-number">1</a>
-                    <h3>Camada Geográfica (GIS)</h3>
-                    <p>Mapas interativos, Heatmaps de Oportunidades e Identificação de Regiões "vazias" com potencial.</p>
+        <section class="section surface-section reveal" id="solucao">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Solução unificada</span>
+                    <h2>Uma experiência inspirada no padrão EvoBI, agora aplicada à evolução integrada do negócio.</h2>
+                    <p>Em vez de módulos desconectados, a plataforma organiza dados, contexto e inteligência em uma experiência única, corporativa, confiável e preparada para acelerar adoção em múltiplas áreas.</p>
                 </div>
-                <div class="arquitetura-item">
-                    <a href="#detalhes-ia" onclick="salvarOrigem('origem-ml')" class="arquitetura-number">2</a>
-                    <h3>Camada Comercial (ML)</h3>
-                    <p>Modelos Preditivos (XGBoost, Prophet) para cálculo do IPT (Índice de Potencial Territorial) e Churn.</p>
+                <div class="grid grid-4">
+                    <article class="ds-card capability-card">
+                        <span class="icon-chip">01</span>
+                        <h3>IA Descritiva</h3>
+                        <p>Mostra o que aconteceu com leitura automatizada de indicadores, gargalos, desvios, desempenho e anomalias.</p>
+                    </article>
+                    <article class="ds-card capability-card">
+                        <span class="icon-chip">02</span>
+                        <h3>IA Diagnóstica</h3>
+                        <p>Explica causas prováveis com modelos interpretáveis para áreas, unidades, processos, clientes e categorias.</p>
+                    </article>
+                    <article class="ds-card capability-card">
+                        <span class="icon-chip">03</span>
+                        <h3>IA Preditiva</h3>
+                        <p>Projeta demanda, risco, churn, capacidade e tendência para reduzir improviso na tomada de decisão.</p>
+                    </article>
+                    <article class="ds-card capability-card">
+                        <span class="icon-chip">04</span>
+                        <h3>IA Prescritiva</h3>
+                        <p>Transforma análise em próxima ação recomendada para liderança, operação e times especializados.</p>
+                    </article>
                 </div>
-                <div class="arquitetura-item">
-                    <a href="#detalhes-ia" onclick="salvarOrigem('origem-llm')" class="arquitetura-number">3</a>
-                    <h3>Camada Generativa (LLM)</h3>
-                    <p>A IA que fala sua língua. Gera narrativas automáticas e funciona como um Chat de Perguntas e Respostas.</p>
+            </div>
+        </section>
+
+        <section class="section dark-section reveal" id="arquitetura">
+            <div class="container">
+                <div class="section-heading section-heading-light">
+                    <span class="eyebrow">Arquitetura da solução</span>
+                    <h2>Dados, machine learning e IA generativa trabalhando no mesmo fluxo de decisão.</h2>
+                    <p>O design reforça a mesma lógica de plataforma corporativa vista no EvoBI: consolidação, segurança, leitura executiva e inteligência aplicada ao contexto do cliente.</p>
+                </div>
+                <div class="grid grid-3 architecture-grid">
+                    <article class="architecture-card ds-card">
+                        <span class="architecture-step">1</span>
+                        <h3>Camada de dados e contexto</h3>
+                        <p>ERP, BI, CRM, operação e contexto geoespacial revelam onde existem gargalos, saturação, risco e oportunidade.</p>
+                    </article>
+                    <article class="architecture-card ds-card">
+                        <span class="architecture-step">2</span>
+                        <h3>Camada analítica e ML</h3>
+                        <p>KPIs, séries temporais, clusters, risco e análise de comportamento sustentam previsões e priorização em escala.</p>
+                    </article>
+                    <article class="architecture-card ds-card">
+                        <span class="architecture-step">3</span>
+                        <h3>Camada generativa</h3>
+                        <p>Narrativas, respostas em linguagem natural e recomendações transformam sinais técnicos em decisão compreensível.</p>
+                    </article>
+                </div>
+                <div class="ds-alert ds-alert-info architecture-note">
+                    <strong>Decisão assistida, não automatizada.</strong>
+                    A IA sugere caminhos, mas a estratégia inicial continua sob validação humana para evitar dependência total do modelo.
                 </div>
             </div>
-        </div>
-    </section>
-	
-	<section id="detalhes-ia" class="section dark-bg reveal">
-        <div class="container">
-            <h2>🛠️ Detalhamento Técnico dos Modelos de IA</h2>
-            <p class="detalhe-intro">Abaixo, veja como os modelos são aplicados para resolver seus desafios comerciais:</p>
+        </section>
 
-            <div id="detalhe-geo" class="ia-detalhe">
-                <h3>1. Camada Geoespacial & Potencial Territorial (K-Means, HDBSCAN)</h3>
-                <p><strong>Aplicação:</strong> Determinar o **Índice de Potencial Territorial (IPT)**, mapear *clusters* de cidades com demandas similares e identificar **territórios vazios** que deveriam estar vendendo.</p>
-                <p><strong>Benefício:</strong> Transforma o mapa de vendas em um **mapa de oportunidades**. Permite a **otimização de carteira** e a sugestão de redistribuição territorial de forma justa e embasada.</p>
-                
-                <button class="return-button" data-target="origem-geo">Voltar para Arquitetura</button>
+        <section class="section surface-section reveal" id="insights">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Exemplos de saída executiva</span>
+                    <h2>A IA fala a língua do negócio, não apenas a língua do modelo.</h2>
+                </div>
+                <div class="grid grid-3">
+                    <article class="ds-card quote-card">
+                        <p>"A unidade Sul concentra demanda reprimida e tempo de resposta acima da média. Priorize redistribuição operacional e cobertura local."</p>
+                    </article>
+                    <article class="ds-card quote-card">
+                        <p>"O processo de atendimento da regional Norte apresenta queda recorrente de produtividade. A causa provável está entre triagem, repasse e execução."</p>
+                    </article>
+                    <article class="ds-card quote-card">
+                        <p>"Clientes do segmento premium reduziram pedidos e interações em três ciclos. A recomendação é ativar retenção e revisar a jornada antes da perda."</p>
+                    </article>
+                </div>
             </div>
+        </section>
 
-            <div id="detalhe-ml" class="ia-detalhe">
-                <h3>2. Machine Learning Preditivo e Diagnóstico (XGBoost, Prophet)</h3>
-                <p><strong>Aplicação:</strong>
-                    <ul>
-                        <li>**Previsão de Vendas (Prophet/LSTM):** Geração de previsibilidade granular por território, produto e representante.</li>
-                        <li>**Detecção de Churn (XGBoost/RF):** Identificação de clientes em **alto risco** com base em variáveis como frequência, mix e atraso de pedidos.</li>
-                        <li>**Diagnóstico (SHAP/LIME):** Modelos de explicabilidade que respondem **'Por quê?'** - por que um representante performa mal, ou por que as vendas caíram em uma região.</li>
-                    </ul>
-                </p>
-                <p><strong>Benefício:</strong> Permite a **antecipação de riscos** e a **priorização automatizada** de clientes e oportunidades de vendas.</p>
-                <button class="return-button" data-target="origem-ml">Voltar para Arquitetura</button>
+        <section class="section surface-section reveal" id="roadmap">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Roadmap de implementação</span>
+                    <h2>Entregas graduais para gerar valor rápido, adoção consistente e evolução sustentável.</h2>
+                </div>
+                <div class="grid grid-4 roadmap-grid">
+                    <article class="ds-card roadmap-card">
+                        <span class="roadmap-phase">Fase 1</span>
+                        <h3>Fundamentos e contexto</h3>
+                        <p>Consolidação de dados, visão inicial de gargalos, comparativos e primeiros insights generativos.</p>
+                        <small>30 a 60 dias</small>
+                    </article>
+                    <article class="ds-card roadmap-card">
+                        <span class="roadmap-phase">Fase 2</span>
+                        <h3>Visibilidade e previsibilidade</h3>
+                        <p>Previsão de demanda, risco, capacidade e priorização automatizada de áreas, clientes e processos.</p>
+                        <small>60 a 90 dias</small>
+                    </article>
+                    <article class="ds-card roadmap-card">
+                        <span class="roadmap-phase">Fase 3</span>
+                        <h3>Recomendação e priorização</h3>
+                        <p>Recomendações por área, otimização de fluxo, redistribuição de esforço e próxima melhor ação sugerida.</p>
+                        <small>90 a 120 dias</small>
+                    </article>
+                    <article class="ds-card roadmap-card">
+                        <span class="roadmap-phase">Fase 4</span>
+                        <h3>Copiloto executivo</h3>
+                        <p>Chat corporativo, alertas contínuos e narrativas mensais para liderança e diretoria.</p>
+                        <small>120 a 180 dias</small>
+                    </article>
+                </div>
             </div>
+        </section>
 
-            <div id="detalhe-llm" class="ia-detalhe">
-                <h3>3. IA Generativa e Prescritiva (LLM - GPT/Llama-3)</h3>
-                <p><strong>Aplicação:</strong> A ponte entre dados e ação. A LLM recebe o *output* dos modelos preditivos e gera **recomendações textuais** e **narrativas automáticas**.</p>
-                <p><strong>Exemplo:</strong> Em vez de mostrar apenas um número, a IA gera a frase: *"O representante X deve focar no produto Y na cidade Z para aumentar R$ 50 mil em 30 dias."*</p>
-                <p><strong>Benefício:</strong> Cria o **Digital Sales Coach**, facilitando a adoção da IA pela equipe comercial e garantindo que os *insights* se transformem em **ações acionáveis**.</p>
-                <button class="return-button" data-target="origem-llm">Voltar para Arquitetura</button>
+        <section class="section surface-section reveal" id="faq">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Perguntas frequentes</span>
+                    <h2>O que sua empresa precisa para começar com segurança e velocidade.</h2>
+                    <p>As respostas abaixo ajudam a alinhar expectativa de prazo, dados e governança antes da primeira fase do projeto.</p>
+                </div>
+                <div class="grid grid-3">
+                    <article class="ds-card insight-card">
+                        <h3>Quanto tempo leva para iniciar?</h3>
+                        <p>Em cenários com ERP, BI, CRM ou bases operacionais já estruturadas, um MVP pode ser organizado em 30 a 60 dias.</p>
+                    </article>
+                    <article class="ds-card insight-card">
+                        <h3>Quais dados são necessários?</h3>
+                        <p>O ponto de partida normalmente reúne dados transacionais, indicadores de negócio e contexto operacional. A maturidade evolui por etapas.</p>
+                    </article>
+                    <article class="ds-card insight-card">
+                        <h3>Como a governança é tratada?</h3>
+                        <p>Com dados auditáveis, modelos interpretáveis e validação humana nas decisões críticas, reduzindo risco e ampliando confiança na adoção.</p>
+                    </article>
+                </div>
             </div>
+        </section>
 
-        </div>
-    </section>
+        <section class="section dark-section reveal" id="governanca">
+            <div class="container">
+                <div class="section-heading section-heading-light">
+                    <span class="eyebrow">Governança e adoção</span>
+                    <h2>Segurança, interpretabilidade e disciplina operacional desde o primeiro passo.</h2>
+                    <p>O posicionamento visual foi desenhado para transmitir confiança corporativa. O conteúdo reforça os cuidados necessários para que a IA gere impacto sem comprometer a governança.</p>
+                </div>
+                <div class="grid grid-2">
+                    <article class="ds-card governance-card">
+                        <h3>Princípios do projeto</h3>
+                        <ul class="check-list">
+                            <li>Dados auditados desde a fase inicial.</li>
+                            <li>Modelos probabilísticos tratados como apoio, não como certeza.</li>
+                            <li>Regras operacionais revisadas com as áreas responsáveis.</li>
+                        </ul>
+                    </article>
+                    <article class="ds-card governance-card">
+                        <h3>Direcionadores de adoção</h3>
+                        <ul class="check-list">
+                            <li>Experiência única e padronizada para aumentar adesão.</li>
+                            <li>Explicações em linguagem natural para acelerar confiança.</li>
+                            <li>Camada humana de aprovação nas decisões estratégicas iniciais.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-    <section id="roadmap" class="section dark-bg reveal">
-        <div class="container">
-            <h2>Resultados em 60 Dias. Crescimento Contínuo em 180.</h2>
-            <table class="roadmap-table">
-                <thead>
-                    <tr>
-                        <th>Fase</th>
-                        <th>Entrega Principal</th>
-                        <th>Resultado Imediato</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>FASE 1 (30–60 Dias)</td>
-                        <td>Mapas de Gaps e Oportunidades</td>
-                        <td>Visão imediata de **dinheiro que está na mesa**.</td>
-                    </tr>
-                    <tr>
-                        <td>FASE 2 (60–90 Dias)</td>
-                        <td>Previsão de Vendas e Modelo Churn</td>
-                        <td>**Previsibilidade** confiável e **priorização** de clientes.</td>
-                    </tr>
-                    <tr>
-                        <td>FASE 3 (90–120 Dias)</td>
-                        <td>Recomendações Prescritivas</td>
-                        <td>Ações **automatizadas e otimizadas** para cada representante.</td>
-                    </tr>
-                    <tr>
-                        <td>FASE 4 (120–180 Dias)</td>
-                        <td>Digital Sales Coach</td>
-                        <td>**Alerta e Mentoria** de IA Gen integrada ao dia a dia.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <section id="insights" class="section light-bg reveal">
-        <div class="container">
-            <h2>A IA Responde às Suas Perguntas Mais Difíceis.</h2>
-            <blockquote class="insight-quote">
-                “O representante da região Sul vende 40% menos linha Premium do que seus pares. A IA sugere foco nas cidades A e B para corrigir este desvio de mix.”
-            </blockquote>
-            <blockquote class="insight-quote">
-                “A cidade de Sorocaba está sem vendas há 8 meses, mas o IPT estima R$ 220 mil/mês com base em correlações geográficas.”
-            </blockquote>
-            <blockquote class="insight-quote">
-                “Clientes do cluster 'Varejo Interior' têm risco de churn alto. Visitar B, C e D esta semana é a ação mais prioritária para evitar perda.”
-            </blockquote>
-        </div>
-    </section>
+        <section class="section cta-section reveal" id="contato">
+            <div class="container cta-shell">
+                <div>
+                    <span class="eyebrow">Próximo passo</span>
+                    <h2>Comece por um diagnóstico executivo e descubra onde sua operação pode ganhar mais velocidade, controle e escala.</h2>
+                    <p>Se os dados já existem em ERP, BI, CRM ou bases operacionais, o cenário está pronto para um MVP de IA Estratégica com entregas curtas, governança desde o início e evolução contínua.</p>
+                </div>
+                <div class="cta-actions">
+                    <a class="ds-button ds-button-primary" href="https://wa.me/5547999958705?text=Ola%2C%20quero%20avancar%20com%20o%20diagnostico%20de%20IA%20Estrategica." target="_blank" rel="noopener noreferrer">
+                        Agendar diagnóstico
+                    </a>
+                    <button class="ds-button ds-button-secondary" type="button" data-open-diagnostico>
+                        Receber recomendação inicial
+                    </button>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <section id="contato" class="section final-cta reveal">
-        <div class="container">
-            <h2>Pronto para Transformar sua Área Comercial?</h2>
-            <p>Seus dados estão estruturados (SAP/BI) e seu desafio é claro. O cenário é ideal para iniciarmos a Frente de IA Comercial Estratégica.</p>
-            <p>Clique no ícone do WhatsApp e fale diretamente com um atendente para ter um atendimento personalizado.</p>
-        </div>
-    </section>
-    
     <section id="diagnostico" class="diagnostico-modal" aria-hidden="true" role="dialog" aria-labelledby="diagnostico-titulo" aria-modal="true">
-        <div class="diagnostico-dialog" role="document">
-            <button class="diagnostico-fechar" id="fechar-diagnostico" aria-label="Fechar diagnóstico">×</button>
-            <h2 id="diagnostico-titulo">Diagnóstico Rápido de Gaps Comerciais</h2>
-            <p class="diagnostico-sub">Em 60 segundos identifique seu foco prioritário e receba uma recomendação personalizada.</p>
+        <div class="diagnostico-dialog ds-card" role="document">
+            <button class="diagnostico-fechar" id="fechar-diagnostico" aria-label="Fechar diagnóstico">x</button>
+            <span class="eyebrow">Diagnóstico rápido</span>
+            <h2 id="diagnostico-titulo">Receba a melhor frente de entrada para a sua operação.</h2>
+            <p class="diagnostico-sub">Responda três perguntas e receba uma recomendação inicial para estruturar a jornada de IA Estratégica com menor atrito e maior impacto.</p>
 
-            <form id="diagnostico-form">
-                <fieldset>
-                    <legend>1. Onde está a principal dor?</legend>
-                    <label><input type="radio" name="dor" value="regioes_sem_venda" required> Regiões sem vendas / potencial não explorado</label>
-                    <label><input type="radio" name="dor" value="baixa_previsibilidade"> Previsibilidade baixa</label>
-                    <label><input type="radio" name="dor" value="foco_ineficiente"> Foco comercial ineficiente</label>
-                    <label><input type="radio" name="dor" value="risco_churn"> Risco de churn</label>
-                </fieldset>
-                <fieldset>
-                    <legend>2. Nível de dados disponível</legend>
-                    <label><input type="radio" name="dados" value="alto" required> Alto (SAP/BI consolidado)</label>
-                    <label><input type="radio" name="dados" value="medio"> Médio (parcial)</label>
-                    <label><input type="radio" name="dados" value="baixo"> Baixo</label>
-                </fieldset>
-                <fieldset>
-                    <legend>3. Objetivo nos próximos 60 dias</legend>
-                    <label><input type="radio" name="objetivo" value="mapear_oportunidades" required> Mapear oportunidades e regiões vazias</label>
-                    <label><input type="radio" name="objetivo" value="prever_vendas"> Prever vendas/churn</label>
-                    <label><input type="radio" name="objetivo" value="recomendacoes"> Recomendações por representante</label>
-                </fieldset>
-                <button type="submit" class="cta-button">Gerar recomendação</button>
+            <form id="diagnostico-form" class="diagnostico-form">
+                <div class="field-group">
+                    <label class="field-label" for="dor">Qual dor pesa mais hoje?</label>
+                    <select id="dor" name="dor" class="field-control" required>
+                        <option value="">Selecione</option>
+                        <option value="visibilidade_fragmentada">Baixa visibilidade e dados fragmentados</option>
+                        <option value="baixa_previsibilidade">Baixa previsibilidade e decisões reativas</option>
+                        <option value="priorizacao_ineficiente">Priorização ineficiente entre áreas</option>
+                        <option value="risco_operacional">Risco operacional, perda de clientes ou desvios críticos</option>
+                    </select>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-group">
+                        <label class="field-label" for="dados">Nível de dados disponível</label>
+                        <select id="dados" name="dados" class="field-control" required>
+                            <option value="">Selecione</option>
+                            <option value="alto">Alto</option>
+                            <option value="medio">Médio</option>
+                            <option value="baixo">Baixo</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label class="field-label" for="objetivo">Objetivo nos próximos 60 dias</label>
+                        <select id="objetivo" name="objetivo" class="field-control" required>
+                            <option value="">Selecione</option>
+                            <option value="mapear_oportunidades">Mapear oportunidades e gargalos</option>
+                            <option value="prever_riscos">Prever riscos e tendências</option>
+                            <option value="recomendacoes">Gerar recomendações priorizadas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="ds-button ds-button-primary">Gerar recomendação</button>
             </form>
 
             <div id="diagnostico-resultado" class="diagnostico-resultado" hidden>
-                <h3>Sugestão de caminho</h3>
-                <p id="diagnostico-texto"></p>
-                <a id="diagnostico-whatsapp" class="cta-whatsapp-hero" target="_blank" rel="nofollow noopener">
-                    <img src="whatsapp-icon-white.png" alt="WhatsApp"> Conversar com Consultor
+                <div class="ds-alert ds-alert-success">
+                    <strong>Sugestão de caminho</strong>
+                    <p id="diagnostico-texto"></p>
+                </div>
+                <a id="diagnostico-whatsapp" class="ds-button ds-button-primary" target="_blank" rel="nofollow noopener noreferrer">
+                    Continuar no WhatsApp
                 </a>
             </div>
         </div>
     </section>
-	
-	<a href="https://wa.me/5547999958705?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20Diagn%C3%B3stico%20Estrat%C3%A9gico%20de%20IA%20Comercial." class="whatsapp-button" target="_blank">
-		<img src="whatsapp-icon.png" alt="WhatsApp" loading="lazy">
-	</a>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 [Seu Nome/Nome da Empresa]. Todos os direitos reservados.</p>
+    <a href="https://wa.me/5547999958705?text=Ola%2C%20quero%20falar%20com%20um%20consultor%20sobre%20IA%20Estrategica." class="whatsapp-button" target="_blank" rel="noopener noreferrer" aria-label="Conversar no WhatsApp">
+        <img src="whatsapp-icon-white.png" alt="" loading="lazy">
+    </a>
+
+    <footer class="site-footer">
+        <div class="container footer-shell">
+            <div class="footer-column footer-brand-column">
+                <a class="footer-brand" href="#topo" aria-label="AXE Tecnologia">
+                    <span class="footer-brand-mark">AXE</span>
+                    <span class="footer-brand-copy">
+                        <strong>IA Estratégica</strong>
+                        <span>AXE Tecnologia</span>
+                    </span>
+                </a>
+                <p class="footer-brand-text">Soluções corporativas para transformar dados, contexto e inteligência em decisões orientadas a resultado.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Produto</h4>
+                <div class="footer-links-list">
+                    <a href="#solucao">Solução</a>
+                    <a href="#arquitetura">Arquitetura</a>
+                    <a href="#roadmap">Roadmap</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <div class="footer-links-list">
+                    <a href="privacidade.html">Privacidade</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Contato</h4>
+                <ul class="footer-contact-list">
+                    <li>
+                        <span class="footer-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" focusable="false">
+                                <path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Zm0-9.5A2.5 2.5 0 1 1 12 7a2.5 2.5 0 0 1 0 5.5Z"></path>
+                            </svg>
+                        </span>
+                        <span>
+                            <strong>Agora Tech Park - HUB</strong><br>
+                            R Dona Francisca 8300, Sala 318<br>
+                            Distrito Industrial, Joinville - SC<br>
+                            CEP 89219-600
+                        </span>
+                    </li>
+                    <li>
+                        <span class="footer-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" focusable="false">
+                                <path d="M3 6.75A1.75 1.75 0 0 1 4.75 5h14.5C20.22 5 21 5.78 21 6.75v10.5A1.75 1.75 0 0 1 19.25 19H4.75A1.75 1.75 0 0 1 3 17.25V6.75Zm1.9-.25L12 11.43l7.1-4.93H4.9Zm14.6 11V8.18l-6.93 4.82a1 1 0 0 1-1.14 0L4.5 8.18v9.32h15Z"></path>
+                            </svg>
+                        </span>
+                        <a href="mailto:comercial@axetecnologia.com.br">comercial@axetecnologia.com.br</a>
+                    </li>
+                    <li>
+                        <span class="footer-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" focusable="false">
+                                <path d="M6.62 10.79a15.54 15.54 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.36 11.36 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.22.2 2.42.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z"></path>
+                            </svg>
+                        </span>
+                        <span>(47) 3305-0673 | (47) 99995-8705</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 AXE Tecnologia. Todos os direitos reservados.</p>
         </div>
     </footer>
+
     <noscript>
-        Seu navegador está com JavaScript desativado. Ative para uma experiência interativa completa.
+        Seu navegador está com JavaScript desativado. Ative-o para usar o diagnóstico rápido e a navegação aprimorada.
     </noscript>
 </body>
 </html>
