@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://conheca.one.northkeep.com.br/sitemap.xml

@@ -14,3 +14,4 @@
 - Preserve alto contraste.
 - Evite gradientes excessivos fora do hero e dos CTAs.
 - Prefira uma única ação primária por seção.
+- Identidade ONE / NorthKeep; não misturar outros produtos nesta land.

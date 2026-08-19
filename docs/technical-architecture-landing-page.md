@@ -1,3 +1,7 @@
+# Arquitetura técnica — Land ONE NorthKeep
+
+Host de marketing: `conheca.one.northkeep.com.br`. App: `one.northkeep.com.br`. KPI: `kpi.northkeep.com.br`. Publicação principal: GitHub Pages (`nk-northkeep/nk-land-one`).
+
 ## 1. Arquitetura do Sistema
 
 ```mermaid
@@ -46,23 +50,23 @@ graph TD
 
 ### 4.1 WhatsApp Business Integration
 ```
-https://wa.me/5547999958705?text=[mensagem pré-formatada]
+https://wa.me/554731500001?text=[mensagem pré-formatada]
 ```
 
 **Parâmetros:**
-- Telefone: 5547999958705 (número fixo do consultor)
+- Telefone: 554731500001 (NorthKeep)
 - Mensagem: Pré-preenchida com base no contexto
 
 **Mensagens pré-definidas:**
-- Hero CTA: "Olá, gostaria de solicitar o Diagnóstico Estratégico de IA Comercial."
+- Hero CTA: "Olá, quero solicitar uma conversa sobre o ONE."
 - Diagnóstico Resultado: Personalizada baseada nas respostas do formulário
 
 ### 4.2 Esquema de Dados do Diagnóstico
 ```javascript
 const diagnosticoData = {
-    dor: string, // 'regioes_sem_venda' | 'baixa_previsibilidade' | 'foco_ineficiente' | 'risco_churn'
-    dados: string, // 'alto' | 'medio' | 'baixo'
-    objetivo: string, // 'mapear_oportunidades' | 'prever_vendas' | 'recomendacoes'
+    dor: string, // 'territorios_sem_venda' | 'baixa_previsibilidade' | 'foco_ineficiente' | 'risco_churn'
+    dados: string, // 'sap' | 'outro_erp' | 'manual'
+    objetivo: string, // 'mapear_oportunidades' | 'prever_riscos' | 'recomendacoes'
     timestamp: number, // Unix timestamp
     userAgent: string // Para análise de dispositivo
 }
@@ -73,9 +77,10 @@ const diagnosticoData = {
 
 | Dor | Dados | Objetivo | Recomendação Gerada |
 |-----|-------|----------|---------------------|
-| regioes_sem_venda | alto | mapear_oportunidades | "Com dados estruturados, podemos criar mapas de gaps em 30 dias. Fase 1 ideal para você." |
-| baixa_previsibilidade | medio | prever_vendas | "Mesmo com dados parciais, nossos modelos conseguem prever com 85% de acurácia." |
-| foco_ineficiente | alto | recomendacoes | "Você está pronto para IA prescritiva. Podemos gerar recomendações específicas por representante." |
+| territorios_sem_venda | sap | mapear_oportunidades | Comece pelo mapa territorial e pela carteira no ONE (já no ar). |
+| baixa_previsibilidade | outro_erp | prever_riscos | Use a preditiva já disponível: previsão, churn e anomalias. |
+| foco_ineficiente | sap | recomendacoes | Ative a prescritiva; quando virar execução, o plano segue no KPI System. |
+| risco_churn | manual | mapear_oportunidades | Organize o recorte mínimo (faturamento, clientes, produtos, metas) e entre pela carteira. |
 
 ## 5. Arquitetura do Frontend
 
@@ -142,11 +147,10 @@ const userData = {
 ```javascript
 // Eventos tracking para análise de conversão
 const analyticsEvents = {
-    'hero_cta_click': { button: 'whatsapp' | 'diagnostico' },
-    'section_view': { section: string, timeOnPage: number },
+    'section_view': { section: string },
     'diagnostico_started': {},
-    'diagnostico_completed': { dor: string, objetivo: string },
-    'whatsapp_click': { source: string, message: string }
+    'diagnostico_completed': { dor: string, dados: string, objetivo: string },
+    'whatsapp_click': { source: 'nav' | 'hero' | 'float' | 'diagnostico' | string }
 }
 ```
 
@@ -208,11 +212,17 @@ function validateDiagnosticoForm(formData) {
 
 ## 9. Deployment e Hospedagem
 
-### 9.1 Configuração Nginx
+### 9.1 GitHub Pages (principal)
+- Workflow: `.github/workflows/pages.yml`
+- Artifact: `_site/` gerado por `scripts/prepare-pages.py`
+- Custom domain: `CNAME` → `conheca.one.northkeep.com.br`
+- Cloudflare: CNAME `conheca.one` → `nk-northkeep.github.io` (DNS only)
+
+### 9.2 Configuração Nginx (alternativa)
 ```nginx
 server {
     listen 80;
-    server_name axe-land-ia-comercial.com;
+    server_name conheca.one.northkeep.com.br;
     
     # HTTPS redirect (Cloudflare)
     return 301 https://$server_name$request_uri;
@@ -220,13 +230,13 @@ server {
 
 server {
     listen 443 ssl http2;
-    server_name axe-land-ia-comercial.com;
+    server_name conheca.one.northkeep.com.br;
     
-    # SSL configuration via Cloudflare
-    ssl_certificate /path/to/cert.pem;
-    ssl_certificate_key /path/to/key.pem;
+    # SSL dedicado (wildcard *.northkeep.com.br nao cobre este host)
+    ssl_certificate /etc/letsencrypt/live/conheca.one.northkeep.com.br/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/conheca.one.northkeep.com.br/privkey.pem;
     
-    root /var/www/axe-land-ia-comercial;
+    root /var/www/nk-land-one;
     index index.html;
     
     # Security headers
@@ -248,7 +258,7 @@ server {
 }
 ```
 
-### 9.2 CI/CD Pipeline
+### 9.3 CI/CD Pipeline
 ```bash
 # Deploy script example
 git pull origin main

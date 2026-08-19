@@ -1,6 +1,6 @@
 ## 1. Visão Geral do Produto
 
-Landing page profissional para serviço de IA Comercial Estratégica que auxilia empresas a identificar gaps comerciais, prever vendas e otimizar desempenho territorial. A página deve transmitir confiança técnica e gerar conversões através de uma experiência interativa e narrativa clara sobre os benefícios da IA no processo comercial.
+Landing page comercial do **ONE NorthKeep** (Inteligência Estratégica). O produto já está em produção; a land demonstra o que está no ar (território, previsão, prescritiva, Coach), a ingestão via SAP, outros ERPs ou carga manual, o ciclo com o KPI System e o roadmap de novas áreas (operações, supply, produção).
 
 **Problema:** Empresas perdem oportunidades de vendas devido à falta de visibilidade sobre territórios sem vendas, ausência de previsibilidade e foco comercial ineficiente.
 

@@ -199,6 +199,21 @@
     font-size: clamp(var(--text-lg), 2vw, 1.32rem);
 }
 
+.hero-text a,
+.section-heading-light a,
+.architecture-note a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
+.surface-section .section-heading a,
+.insight-card a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
 .hero-actions,
 .cta-actions,
 .hero-pills {
@@ -519,7 +534,7 @@
     gap: var(--space-6);
 }
 
-.footer-shell strong {
+.footer-contact-list strong {
     display: block;
     margin-bottom: var(--space-2);
     color: var(--color-text);

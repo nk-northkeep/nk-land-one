@@ -65,6 +65,19 @@
     font-size: 1.05rem;
 }
 
+.footer-brand-text a {
+    display: inline;
+    color: inherit;
+    font-weight: var(--font-bold, 700);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.footer-brand-text a:hover,
+.footer-brand-text a:focus-visible {
+    color: #fff;
+}
+
 .footer-links-list {
     display: grid;
     gap: var(--space-4);

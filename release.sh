@@ -21,7 +21,7 @@ while [ $# -gt 0 ]; do
 done
 
 echo "🔧 Processo de Release - Início"
-echo "📦 Repositório: https://github.com/AxeTecnologia/Axe_Land_Inteligencia_Negocios_IA.git"
+echo "📦 Repositório: Nk_Land_One (landing ONE NorthKeep)"
 
 LAST_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
 if [ -n "$LAST_VERSION" ]; then

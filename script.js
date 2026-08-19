@@ -1,3 +1,9 @@
+function trackEvent(eventName, params) {
+  if (typeof window.nkTrack === 'function') {
+    window.nkTrack(eventName, params);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const stickyNavs = document.querySelectorAll('[data-sticky-nav]');
   const navToggle = document.querySelector('.nav-toggle');
@@ -62,6 +68,31 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updateActiveSectionLink);
   }
 
+  const trackedSectionIds = ['dores', 'solucao', 'arquitetura', 'no-ar', 'insights', 'roadmap', 'faq', 'governanca', 'contato'];
+  const seenSections = new Set();
+  const sectionViewObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || seenSections.has(entry.target.id)) return;
+        seenSections.add(entry.target.id);
+        trackEvent('section_view', { section: entry.target.id });
+      });
+    },
+    { threshold: 0.45 }
+  );
+  trackedSectionIds.forEach((id) => {
+    const section = document.getElementById(id);
+    if (section) sectionViewObserver.observe(section);
+  });
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href*="wa.me"]');
+    if (!link) return;
+    trackEvent('whatsapp_click', {
+      source: link.getAttribute('data-nk-source') || link.id || 'link',
+    });
+  });
+
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
       const expanded = navToggle.getAttribute('aria-expanded') === 'true';
@@ -101,19 +132,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const linkWpp = document.getElementById('diagnostico-whatsapp');
 
   function abrirModal() {
-    if (!modal || !abrirBtn) return;
+    if (!modal) return;
+    trackEvent('diagnostico_started', {});
     modal.setAttribute('aria-hidden', 'false');
-    abrirBtn.setAttribute('aria-expanded', 'true');
+    if (abrirBtn) abrirBtn.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
   }
   function fecharModal() {
-    if (!modal || !abrirBtn) return;
+    if (!modal) return;
     modal.setAttribute('aria-hidden', 'true');
-    abrirBtn.setAttribute('aria-expanded', 'false');
+    if (abrirBtn) abrirBtn.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
 
-  if (abrirBtn && modal) {
+  if (abrirBtn && modal && !abrirBtn.hasAttribute('data-open-diagnostico')) {
     abrirBtn.addEventListener('click', abrirModal);
   }
   if (fecharBtn) {
@@ -143,36 +175,45 @@ document.addEventListener('DOMContentLoaded', () => {
       let recomendacao = '';
       if (objetivo === 'mapear_oportunidades') {
         recomendacao =
-          'Comece por um mapa de oportunidades e gargalos, consolidando indicadores críticos, comparativos e sinais de prioridade em um único painel executivo.';
+          'Comece pelo mapa territorial e pela carteira no ONE: gaps de cidade, ranking de potencial e comparativo de representantes já estão no ar.';
       } else if (objetivo === 'prever_riscos') {
         recomendacao =
-          'Implemente uma camada de previsibilidade com alertas de risco, tendência e anomalias. Use modelos explicáveis para comunicar causas e orientar ações antecipadas.';
+          'Use a camada preditiva já disponível: previsão de vendas, churn e anomalias, com narrativas explicáveis para a liderança comercial.';
       } else {
         recomendacao =
-          'Ative recomendações prescritivas com priorização de ações, filas e responsáveis para acelerar resposta operacional e tomada de decisão.';
+          'Ative a prescritiva (carteira, mix/foco e plano semanal). Quando a recomendação virar execução, o plano segue no KPI System, com responsável e prazo.';
       }
 
       const dorLabelMap = {
-        visibilidade_fragmentada: 'Baixa visibilidade e dados fragmentados',
+        territorios_sem_venda: 'Regiões ou cidades sem venda visível',
         baixa_previsibilidade: 'Previsibilidade baixa',
-        priorizacao_ineficiente: 'Priorização ineficiente entre áreas',
-        risco_operacional: 'Risco operacional ou perda crítica',
+        foco_ineficiente: 'Mix e foco comercial ineficientes',
+        risco_churn: 'Risco de churn ou perda de carteira',
       };
-      const dadosLabelMap = { alto: 'Alto (ERP/BI/CRM)', medio: 'Médio', baixo: 'Baixo' };
+      const dadosLabelMap = {
+        sap: 'SAP (incluindo HANA)',
+        outro_erp: 'Outro ERP',
+        manual: 'Carga manual / planilhas',
+      };
       const objetivoLabelMap = {
-        mapear_oportunidades: 'Mapear oportunidades e gargalos',
-        prever_riscos: 'Prever riscos e tendências',
-        recomendacoes: 'Gerar recomendações priorizadas',
+        mapear_oportunidades: 'Mapear gaps territoriais e carteira',
+        prever_riscos: 'Prever vendas, churn e tendência',
+        recomendacoes: 'Gerar próxima ação e plano no KPI',
       };
 
       const resumo = `Dor: ${dorLabelMap[dor]} | Dados: ${dadosLabelMap[dados]} | Objetivo: ${objetivoLabelMap[objetivo]}`;
-      texto.textContent = `${recomendacao} ${dados === 'baixo' ? 'O primeiro passo recomendado é estruturar uma base mínima confiável antes de ampliar automações.' : ''}`;
+      const ingestaoNota =
+        dados === 'manual'
+          ? ' Com carga manual, o primeiro passo é organizar o recorte mínimo (faturamento, clientes, produtos e metas) antes de ampliar automações.'
+          : '';
+      texto.textContent = `${recomendacao}${ingestaoNota}`;
 
       const msg = encodeURIComponent(
-        `Olá, quero avançar com o Diagnóstico de IA Estratégica. ${resumo}.`
+        `Olá, quero avançar com o diagnóstico do ONE NorthKeep. ${resumo}.`
       );
-      linkWpp.href = `https://wa.me/5547999958705?text=${msg}`;
+      linkWpp.href = `https://wa.me/554731500001?text=${msg}`;
 
+      trackEvent('diagnostico_completed', { dor, dados, objetivo });
       resultado.hidden = false;
     });
   }

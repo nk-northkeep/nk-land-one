@@ -1,7 +1,7 @@
-# Design System — IA Estratégica
+# Design System — ONE NorthKeep
 
 ## Identidade Visual
-Tom visual corporativo, tecnológico e confiável, inspirado na clareza do EvoBI e no contexto institucional da AXE Tecnologia. A direção prioriza leitura executiva, hierarquia forte de conteúdo, contraste alto e percepção de segurança.
+Tom visual corporativo, tecnológico e confiável, alinhado à NorthKeep e ao produto **ONE** (Inteligência Estratégica). A direção prioriza leitura executiva, hierarquia forte de conteúdo, contraste alto e percepção de segurança. Esta land é exclusiva do ONE; o site institucional centraliza o portfólio depois.
 
 ## Paleta de Cores
 | Token | Valor | Uso |
@@ -12,7 +12,7 @@ Tom visual corporativo, tecnológico e confiável, inspirado na clareza do EvoBI
 | `--color-text` | `#e6edf8` | Texto em fundos escuros |
 | `--color-text-strong` | `#091528` | Títulos em fundos claros |
 | `--color-text-body` | `#41526b` | Texto corrido em fundos claros |
-| `--color-primary` | `#2f80ed` | CTA principal, links e destaque |
+| `--color-primary` | `#2b7a8e` | CTA principal, links e destaque (teal NorthKeep) |
 | `--color-accent` | `#38bdf8` | Selos, eyebrow e pontos de contraste |
 | `--color-success` | `#14b87a` | Estados positivos e alertas de sucesso |
 | `--color-border` | `rgba(148, 163, 184, 0.2)` | Contornos sutis |
@@ -43,3 +43,4 @@ Tom visual corporativo, tecnológico e confiável, inspirado na clareza do EvoBI
 - Mantenha uma única narrativa por seção; evite excesso de blocos concorrendo entre si.
 - Prefira fundos claros para seções explicativas e fundos escuros para posicionamento, arquitetura e CTA.
 - A IA deve ser comunicada como apoio decisório; o conteúdo precisa preservar governança e validação humana.
+- Não misturar identidade de outros produtos NorthKeep nesta land; KPI tem land própria.
