@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updateActiveSectionLink);
   }
 
-  const trackedSectionIds = ['dores', 'solucao', 'arquitetura', 'no-ar', 'insights', 'roadmap', 'faq', 'governanca', 'contato'];
+  const trackedSectionIds = ['dores', 'solucao', 'arquitetura', 'no-ar', 'insights', 'roadmap', 'faq', 'governanca', 'aderencia', 'contato'];
   const seenSections = new Set();
   const sectionViewObserver = new IntersectionObserver(
     (entries) => {
@@ -86,11 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.addEventListener('click', (event) => {
-    const link = event.target.closest('a[href*="wa.me"]');
+    const link = event.target.closest('a[href*="wa.me"], a[data-nk-conversion]');
     if (!link) return;
-    trackEvent('whatsapp_click', {
-      source: link.getAttribute('data-nk-source') || link.id || 'link',
-    });
+    const source = link.getAttribute('data-nk-source') || link.id || 'link';
+    const conversion = link.getAttribute('data-nk-conversion');
+    if (conversion) trackEvent(conversion, { source });
+    else if ((link.getAttribute('href') || '').includes('wa.me')) {
+      trackEvent('whatsapp_click', { source });
+    }
   });
 
   if (navToggle && navLinks) {
@@ -181,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
           'Use a camada preditiva já disponível: previsão de vendas, churn e anomalias, com narrativas explicáveis para a liderança comercial.';
       } else {
         recomendacao =
-          'Ative a prescritiva (carteira, mix/foco e plano semanal). Quando a recomendação virar execução, o plano segue no KPI System, com responsável e prazo.';
+          'Ative a prescritiva (carteira, mix/foco e plano semanal). Quando a recomendação virar execução, o plano segue no NK Action, com responsável e prazo.';
       }
 
       const dorLabelMap = {
@@ -198,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const objetivoLabelMap = {
         mapear_oportunidades: 'Mapear gaps territoriais e carteira',
         prever_riscos: 'Prever vendas, churn e tendência',
-        recomendacoes: 'Gerar próxima ação e plano no KPI',
+        recomendacoes: 'Gerar próxima ação e plano no NK Action',
       };
 
       const resumo = `Dor: ${dorLabelMap[dor]} | Dados: ${dadosLabelMap[dados]} | Objetivo: ${objetivoLabelMap[objetivo]}`;
@@ -215,6 +218,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
       trackEvent('diagnostico_completed', { dor, dados, objetivo });
       resultado.hidden = false;
+    });
+  }
+
+  const leadForm = document.getElementById('aderencia-form');
+  const leadStatus = document.getElementById('aderencia-status');
+  const leadEndpoint = String((window.NK_SITE_CONFIG || {}).leadFormAction || '').trim();
+  const leadEndpointOk = /^https:\/\/\S+$/i.test(leadEndpoint);
+  if (leadForm && leadEndpointOk) {
+    leadForm.action = leadEndpoint;
+    leadForm.enctype = 'application/x-www-form-urlencoded';
+  }
+
+  function leadMessage(form) {
+    const value = (name) => String(form.elements[name].value || '').trim();
+    return [
+      'Olá, quero a Avaliação de Aderência do ONE (retorno em até 48h).',
+      `Nome: ${value('nome')}`,
+      `Empresa: ${value('empresa')}`,
+      `Cargo: ${value('cargo')}`,
+      `E-mail: ${value('email')}`,
+      `WhatsApp: ${value('whatsapp')}`,
+      `Funcionários: ${value('funcionarios')}`,
+      `Segmento: ${value('segmento')}`,
+    ].join('\n');
+  }
+
+  if (leadForm) {
+    leadForm.addEventListener('submit', (event) => {
+      trackEvent('lead_form_submit', {
+        source: 'aderencia',
+        segmento: leadForm.elements.segmento.value,
+        funcionarios: leadForm.elements.funcionarios.value,
+      });
+      if (leadEndpointOk) return;
+
+      event.preventDefault();
+      const body = leadMessage(leadForm);
+      const whatsapp = `https://wa.me/554731500001?text=${encodeURIComponent(body)}`;
+      const mailto = `mailto:comercial@northkeep.com.br?subject=${encodeURIComponent('Avaliação de Aderência — ONE')}&body=${encodeURIComponent(body)}`;
+      window.open(whatsapp, '_blank', 'noopener');
+      if (leadStatus) {
+        leadStatus.replaceChildren();
+        leadStatus.append('Abrimos o WhatsApp com os dados da avaliação. Se não abrir, ');
+        const mailLink = document.createElement('a');
+        mailLink.href = mailto;
+        mailLink.textContent = 'envie por e-mail';
+        leadStatus.append(mailLink);
+        leadStatus.append('.');
+        leadStatus.hidden = false;
+      }
     });
   }
 });

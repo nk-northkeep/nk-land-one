@@ -1,26 +1,27 @@
 # ONE NorthKeep — Landing Page
 
-Landing comercial do **ONE** (Inteligência Estratégica da NorthKeep). O produto já está em produção em [one.northkeep.com.br](https://one.northkeep.com.br/); esta land apresenta o que está no ar, a ingestão (SAP, outros ERPs ou carga manual), o ciclo com o [KPI System](https://kpi.northkeep.com.br/) e o roadmap de novas áreas. HTML, CSS e JavaScript puros para desempenho, SEO e publicação no **GitHub Pages**.
+Landing comercial do **ONE** (Inteligência Estratégica da NorthKeep). O produto já está em produção em [one.northkeep.com.br](https://one.northkeep.com.br/); esta land apresenta o que está no ar, a ingestão (SAP, outros ERPs ou carga manual), o ciclo com o [NK Action](https://action.northkeep.com.br/) e o roadmap de novas áreas. HTML, CSS e JavaScript puros para desempenho, SEO e publicação no **GitHub Pages**.
 
 ## Recursos
 - Narrativa alinhada ao comercial no ar: quatro frentes de IA, território, prescritiva, Coach
 - Ingestão explícita: SAP (incluindo HANA), outros ERPs e carga manual
-- Ponte de responsabilização para o KPI System (`kpi.northkeep.com.br`)
+- Ponte de responsabilização para o NK Action (`action.northkeep.com.br`)
 - Roadmap de extensão do conceito ONE para operações, supply e produção
+- Avaliação de Aderência (formulário) com fallback para WhatsApp e e-mail
 - Modal de diagnóstico rápido com WhatsApp NorthKeep
-- Metadados SEO, Open Graph e JSON-LD (organização NorthKeep)
-- Analytics opcional (GA4, GTM, Clarity, Search Console, Meta Pixel) via variáveis do GitHub
+- Metadados SEO, Open Graph (incluindo imagem) e JSON-LD
+- Analytics opcional (GA4, GTM, Clarity, Search Console, Meta Pixel) — só carrega com ID preenchido
 
 ## Estrutura
 - `index.html` — página principal
 - `privacidade.html` — aviso de privacidade
 - `style.css` — estilos responsivos e animações
 - `script.js` — interações, modal, WhatsApp e eventos de conversão
-- `site-config.js` — IDs de analytics (vazios no repo; preenchidos no deploy)
+- `site-config.js` — único bloco de IDs e do endpoint do formulário (vazios no repo)
 - `analytics.js` — carrega só as ferramentas cujo ID foi informado
+- `og-image.png` — prévia 1200×630 para Open Graph e Twitter
 - `design-system/` — tokens e componentes ONE/NorthKeep
 - `.github/workflows/pages.yml` — publicação no GitHub Pages
-- `docs/` — PRD e arquitetura técnica
 
 ## Preview Local
 ```bash
@@ -41,7 +42,7 @@ python -m http.server 8000 --directory _site
 |------|--------|
 | Land | `https://conheca.one.northkeep.com.br` |
 | App | `https://one.northkeep.com.br` |
-| KPI | `https://kpi.northkeep.com.br` |
+| NK Action | `https://action.northkeep.com.br` |
 | Institucional | `https://www.northkeep.com.br` |
 | GitHub Pages | `nk-northkeep.github.io` (CNAME no repo) |
 | WhatsApp | `47 3150-0001` (`wa.me/554731500001`) |
@@ -66,27 +67,34 @@ O arquivo `CNAME` já aponta para `conheca.one.northkeep.com.br`. Depois do prim
 
 ### Variáveis de analytics
 
-São **Repository variables** (não secrets): os IDs acabam no HTML publicado. Campo vazio = a ferramenta não é carregada. Se `GTM_CONTAINER_ID` estiver preenchido, o GA4 deve ser configurado **dentro do GTM** (`GA_MEASUREMENT_ID` é ignorado).
+Os IDs publicados ficam em `site-config.js`. Uma **Repository variable** só substitui o campo correspondente quando está preenchida. Variável ausente ou vazia mantém o valor commitado. ID vazio no arquivo = a ferramenta não carrega.
 
-| Variável | Exemplo | Uso |
-|----------|---------|-----|
-| `SITE_URL` | `https://conheca.one.northkeep.com.br` | URL canônica (opcional; já tem padrão) |
-| `GA_MEASUREMENT_ID` | `G-XXXXXXXXXX` | Google Analytics 4 |
-| `GTM_CONTAINER_ID` | `GTM-XXXXXXX` | Google Tag Manager |
-| `CLARITY_PROJECT_ID` | `abcdefghij` | Microsoft Clarity |
-| `SEARCH_CONSOLE_VERIFICATION` | token da meta tag | Google Search Console |
-| `BING_SITE_VERIFICATION` | token da meta tag | Bing Webmaster |
-| `META_PIXEL_ID` | `1234567890` | Meta Pixel |
+O GA4 (`gaMeasurementId`) é enviado pelo gtag da própria página, também quando o GTM está ativo. Há um único `page_view`. O GTM sobe numa fila separada e não mede o GA4. No GTM, não crie tag do Google nem tag de evento GA4 para `G-Y7WDLTQDEJ` — isso duplicaria o hit. Para contar conversão, marque no GA4 (Admin → Eventos) `lead_form_submit`, `agendar_demonstracao` e `whatsapp_click` como eventos principais.
 
-Eventos enviados quando alguma ferramenta está ativa:
+| Variável | Sobrescreve | Uso |
+|----------|-------------|-----|
+| `SITE_URL` | `siteUrl` | URL canônica |
+| `GA_MEASUREMENT_ID` | `gaMeasurementId` | Google Analytics 4, via gtag |
+| `GTM_CONTAINER_ID` | `gtmContainerId` | Google Tag Manager |
+| `CLARITY_PROJECT_ID` | `clarityProjectId` | Microsoft Clarity |
+| `SEARCH_CONSOLE_VERIFICATION` | `searchConsoleVerification` | Google Search Console |
+| `BING_SITE_VERIFICATION` | `bingSiteVerification` | Bing Webmaster |
+| `META_PIXEL_ID` | `metaPixelId` | Meta Pixel |
+| `LEAD_FORM_ACTION` | `leadFormAction` | POST https da Avaliação de Aderência. Vazio no arquivo = WhatsApp + mailto |
 
+O formulário envia `nome`, `empresa`, `cargo`, `email`, `whatsapp`, `funcionarios`, `segmento`, `consentimento` e `_subject`.
+
+Eventos (o gtag envia ao GA4; o dataLayer fica disponível para o GTM; o Meta só recebe se `metaPixelId` estiver preenchido):
+
+- `lead_form_submit` — envio da Avaliação de Aderência (Meta: `Lead`)
+- `agendar_demonstracao` — CTA Agendar demonstração (Meta: `Schedule`; não soma `whatsapp_click`)
+- `whatsapp_click` — demais links `wa.me` (`source`: `float`, `diagnostico`; Meta: `Contact`)
 - `section_view` — primeira visão de cada seção
-- `whatsapp_click` — clique em qualquer `wa.me` (`source`: `nav`, `hero`, `float`, `diagnostico`)
 - `diagnostico_started` / `diagnostico_completed`
 
 ## Publicação alternativa (Nginx + Cloudflare na nk-apps-01)
 
-Se a land voltar para a VM, rode `python scripts/prepare-pages.py` com as mesmas variáveis de ambiente e publique o conteúdo de `_site/` em `/var/www/nk-land-one`. Exemplo de conf Nginx em `docs/technical-architecture-landing-page.md`.
+Se a land voltar para a VM, rode `python scripts/prepare-pages.py` com as mesmas variáveis de ambiente e publique o conteúdo de `_site/` em `/var/www/nk-land-one`.
 
 ## Ajustes Recomendados
 - Incluir logo NorthKeep local quando o asset oficial estiver no repo
