@@ -1,9 +1,15 @@
 /**
- * Configuração pública da land (IDs de analytics, verificação e URL canônica).
+ * ÚNICO BLOCO DE CONFIGURAÇÃO DA LAND.
+ * Preencha aqui ou nas Repository variables do GitHub (o workflow de Pages
+ * regrava este arquivo no deploy — variável vazia continua vazia).
+ * ID vazio = a ferramenta não é carregada. Não invente IDs.
  *
- * No GitHub, preencha Repository variables (Settings → Secrets and variables → Actions → Variables).
- * O workflow de Pages injeta os valores neste arquivo no momento do deploy.
- * IDs vazios = a ferramenta correspondente não é carregada.
+ *   gtmContainerId     GTM-XXXXXXX
+ *   gaMeasurementId    G-XXXXXXXXXX   (ignorado quando o GTM está preenchido)
+ *   metaPixelId        ID numérico do Meta Pixel
+ *   clarityProjectId   ID do projeto Microsoft Clarity
+ *   leadFormAction     URL https do formulário (Formspree, Getform, Basin…).
+ *                      Vazio = Avaliação de Aderência abre WhatsApp e oferece mailto.
  */
 window.NK_SITE_CONFIG = {
   siteUrl: "https://conheca.one.northkeep.com.br",
@@ -13,4 +19,5 @@ window.NK_SITE_CONFIG = {
   searchConsoleVerification: "",
   bingSiteVerification: "",
   metaPixelId: "",
+  leadFormAction: "",
 };

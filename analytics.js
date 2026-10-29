@@ -13,6 +13,12 @@
 
   window.dataLayer = window.dataLayer || [];
 
+  const metaStandardEvent = {
+    lead_form_submit: "Lead",
+    agendar_demonstracao: "Schedule",
+    whatsapp_click: "Contact",
+  };
+
   window.nkTrack = function nkTrack(eventName, params) {
     if (!eventName) return;
     const payload = Object.assign({ event: eventName }, params || {});
@@ -21,7 +27,9 @@
       window.gtag("event", eventName, params || {});
     }
     if (typeof window.fbq === "function") {
-      window.fbq("trackCustom", eventName, params || {});
+      const standard = metaStandardEvent[eventName];
+      if (standard) window.fbq("track", standard, params || {});
+      else window.fbq("trackCustom", eventName, params || {});
     }
   };
 

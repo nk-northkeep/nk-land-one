@@ -28,6 +28,7 @@ PUBLISH_FILES = [
     ".nojekyll",
     "whatsapp-icon.png",
     "whatsapp-icon-white.png",
+    "og-image.png",
 ]
 
 PUBLISH_DIRS = ["design-system"]
@@ -36,6 +37,12 @@ PUBLISH_DIRS = ["design-system"]
 def env(name: str, default: str = "") -> str:
     value = os.environ.get(name, "").strip()
     return value or default
+
+
+def https_url(value: str) -> str:
+    if value.startswith("https://") and " " not in value:
+        return value
+    return ""
 
 
 def write_site_config(dest: Path) -> dict[str, str]:
@@ -47,7 +54,11 @@ def write_site_config(dest: Path) -> dict[str, str]:
         "searchConsoleVerification": env("SEARCH_CONSOLE_VERIFICATION"),
         "bingSiteVerification": env("BING_SITE_VERIFICATION"),
         "metaPixelId": env("META_PIXEL_ID"),
+        "leadFormAction": https_url(env("LEAD_FORM_ACTION")),
     }
+    raw_form = env("LEAD_FORM_ACTION")
+    if raw_form and not config["leadFormAction"]:
+        print("LEAD_FORM_ACTION ignorado: informe uma URL https, sem espaços.")
 
     js = json.dumps
     lines = [
@@ -59,11 +70,30 @@ def write_site_config(dest: Path) -> dict[str, str]:
         f"  searchConsoleVerification: {js(config['searchConsoleVerification'])},",
         f"  bingSiteVerification: {js(config['bingSiteVerification'])},",
         f"  metaPixelId: {js(config['metaPixelId'])},",
+        f"  leadFormAction: {js(config['leadFormAction'])},",
         "};",
         "",
     ]
     dest.write_text("\n".join(lines), encoding="utf-8")
     return config
+
+
+def inject_form_action(html_path: Path, action: str) -> None:
+    if not action:
+        return
+    text = html_path.read_text(encoding="utf-8")
+    old = (
+        'id="aderencia-form" class="aderencia-form ds-card" method="post" '
+        'action="mailto:comercial@northkeep.com.br" enctype="text/plain"'
+    )
+    safe = html.escape(action, quote=True)
+    new = (
+        'id="aderencia-form" class="aderencia-form ds-card" method="post" '
+        f'action="{safe}" enctype="application/x-www-form-urlencoded"'
+    )
+    if old not in text:
+        raise SystemExit("Marcador do formulário de aderência não encontrado em index.html")
+    html_path.write_text(text.replace(old, new, 1), encoding="utf-8")
 
 
 def inject_verification_meta(html_path: Path, config: dict[str, str]) -> None:
@@ -111,6 +141,9 @@ def main() -> None:
         path = OUT / page
         if path.exists():
             inject_verification_meta(path, config)
+    index = OUT / "index.html"
+    if index.exists():
+        inject_form_action(index, config["leadFormAction"])
 
     enabled = [key for key, value in config.items() if key != "siteUrl" and value]
     print(f"GitHub Pages artifact pronto em {OUT}")

@@ -33,6 +33,7 @@ jobs:
           SEARCH_CONSOLE_VERIFICATION: ${{ vars.SEARCH_CONSOLE_VERIFICATION }}
           BING_SITE_VERIFICATION: ${{ vars.BING_SITE_VERIFICATION }}
           META_PIXEL_ID: ${{ vars.META_PIXEL_ID }}
+          LEAD_FORM_ACTION: ${{ vars.LEAD_FORM_ACTION }}
         run: python3 scripts/prepare-pages.py
 
       - name: Configure Pages

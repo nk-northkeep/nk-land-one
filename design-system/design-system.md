@@ -43,4 +43,4 @@ Tom visual corporativo, tecnológico e confiável, alinhado à NorthKeep e ao pr
 - Mantenha uma única narrativa por seção; evite excesso de blocos concorrendo entre si.
 - Prefira fundos claros para seções explicativas e fundos escuros para posicionamento, arquitetura e CTA.
 - A IA deve ser comunicada como apoio decisório; o conteúdo precisa preservar governança e validação humana.
-- Não misturar identidade de outros produtos NorthKeep nesta land; KPI tem land própria.
+- Não misturar identidade de outros produtos NorthKeep nesta land; o NK Action tem land própria.
