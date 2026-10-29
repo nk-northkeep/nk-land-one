@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const source = link.getAttribute('data-nk-source') || link.id || 'link';
     const conversion = link.getAttribute('data-nk-conversion');
     if (conversion) trackEvent(conversion, { source });
-    if ((link.getAttribute('href') || '').includes('wa.me')) {
+    else if ((link.getAttribute('href') || '').includes('wa.me')) {
       trackEvent('whatsapp_click', { source });
     }
   });

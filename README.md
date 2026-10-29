@@ -79,7 +79,7 @@ O GA4 (`gaMeasurementId`) é enviado pelo gtag da própria página, também quan
 | `CLARITY_PROJECT_ID` | `clarityProjectId` | Microsoft Clarity |
 | `SEARCH_CONSOLE_VERIFICATION` | `searchConsoleVerification` | Google Search Console |
 | `BING_SITE_VERIFICATION` | `bingSiteVerification` | Bing Webmaster |
-| `META_PIXEL_ID` | `metaPixelId` | Meta Pixel (vazio até confirmar o ID do Pixel) |
+| `META_PIXEL_ID` | `metaPixelId` | Meta Pixel |
 | `LEAD_FORM_ACTION` | `leadFormAction` | POST https da Avaliação de Aderência. Vazio no arquivo = WhatsApp + mailto |
 
 O formulário envia `nome`, `empresa`, `cargo`, `email`, `whatsapp`, `funcionarios`, `segmento`, `consentimento` e `_subject`.
@@ -87,8 +87,8 @@ O formulário envia `nome`, `empresa`, `cargo`, `email`, `whatsapp`, `funcionari
 Eventos (o gtag envia ao GA4; o dataLayer fica disponível para o GTM; o Meta só recebe se `metaPixelId` estiver preenchido):
 
 - `lead_form_submit` — envio da Avaliação de Aderência (Meta: `Lead`)
-- `agendar_demonstracao` — CTA Agendar demonstração (Meta: `Schedule`)
-- `whatsapp_click` — qualquer `wa.me` (`source`: `nav`, `hero`, `float`, `diagnostico`, `aderencia`, `contato`; Meta: `Contact`)
+- `agendar_demonstracao` — CTA Agendar demonstração (Meta: `Schedule`; não soma `whatsapp_click`)
+- `whatsapp_click` — demais links `wa.me` (`source`: `float`, `diagnostico`; Meta: `Contact`)
 - `section_view` — primeira visão de cada seção
 - `diagnostico_started` / `diagnostico_completed`
 

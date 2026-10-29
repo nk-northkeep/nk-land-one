@@ -9,7 +9,6 @@
  * Não cadastre outra tag do Google / GA4 no GTM para o mesmo ID: a page_view
  * seria contada duas vezes. O GTM fica para outras tags.
  *
- * metaPixelId fica vazio até confirmar o ID do Pixel (não o do portfólio Business).
  */
 window.NK_SITE_CONFIG = {
   siteUrl: "https://conheca.one.northkeep.com.br",
@@ -18,6 +17,6 @@ window.NK_SITE_CONFIG = {
   clarityProjectId: "z5bl67uqah",
   searchConsoleVerification: "",
   bingSiteVerification: "",
-  metaPixelId: "",
+  metaPixelId: "2615387118898673",
   leadFormAction: "https://formspree.io/f/meaazpdb",
 };
