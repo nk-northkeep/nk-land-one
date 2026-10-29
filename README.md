@@ -67,24 +67,24 @@ O arquivo `CNAME` já aponta para `conheca.one.northkeep.com.br`. Depois do prim
 
 ### Variáveis de analytics
 
-São **Repository variables** (não secrets): os IDs acabam no HTML publicado. Campo vazio = a ferramenta não é carregada. Se `GTM_CONTAINER_ID` estiver preenchido, o GA4 deve ser configurado **dentro do GTM** (`GA_MEASUREMENT_ID` é ignorado).
+Os IDs publicados ficam em `site-config.js`. Uma **Repository variable** só substitui o campo correspondente quando está preenchida. Variável ausente ou vazia mantém o valor commitado. ID vazio no arquivo = a ferramenta não carrega.
 
-| Variável | Exemplo | Uso |
-|----------|---------|-----|
-| `SITE_URL` | `https://conheca.one.northkeep.com.br` | URL canônica (opcional; já tem padrão) |
-| `GA_MEASUREMENT_ID` | `G-XXXXXXXXXX` | Google Analytics 4 |
-| `GTM_CONTAINER_ID` | `GTM-XXXXXXX` | Google Tag Manager |
-| `CLARITY_PROJECT_ID` | `abcdefghij` | Microsoft Clarity |
-| `SEARCH_CONSOLE_VERIFICATION` | token da meta tag | Google Search Console |
-| `BING_SITE_VERIFICATION` | token da meta tag | Bing Webmaster |
-| `META_PIXEL_ID` | `1234567890` | Meta Pixel |
-| `LEAD_FORM_ACTION` | `https://formspree.io/f/xxxxxxxx` | POST https da Avaliação de Aderência. Vazio = WhatsApp + mailto |
+O GA4 (`gaMeasurementId`) é enviado pelo gtag da própria página, também quando o GTM está ativo. Há um único `page_view`. O GTM sobe numa fila separada e não mede o GA4. No GTM, não crie tag do Google nem tag de evento GA4 para `G-Y7WDLTQDEJ` — isso duplicaria o hit. Para contar conversão, marque no GA4 (Admin → Eventos) `lead_form_submit`, `agendar_demonstracao` e `whatsapp_click` como eventos principais.
 
-Os mesmos campos existem em `site-config.js` (`gtmContainerId`, `gaMeasurementId`, `metaPixelId`, `clarityProjectId`, `leadFormAction`). No deploy, o workflow regrava esse arquivo a partir das variáveis acima. Valor vazio permanece vazio.
+| Variável | Sobrescreve | Uso |
+|----------|-------------|-----|
+| `SITE_URL` | `siteUrl` | URL canônica |
+| `GA_MEASUREMENT_ID` | `gaMeasurementId` | Google Analytics 4, via gtag |
+| `GTM_CONTAINER_ID` | `gtmContainerId` | Google Tag Manager |
+| `CLARITY_PROJECT_ID` | `clarityProjectId` | Microsoft Clarity |
+| `SEARCH_CONSOLE_VERIFICATION` | `searchConsoleVerification` | Google Search Console |
+| `BING_SITE_VERIFICATION` | `bingSiteVerification` | Bing Webmaster |
+| `META_PIXEL_ID` | `metaPixelId` | Meta Pixel (vazio até confirmar o ID do Pixel) |
+| `LEAD_FORM_ACTION` | `leadFormAction` | POST https da Avaliação de Aderência. Vazio no arquivo = WhatsApp + mailto |
 
 O formulário envia `nome`, `empresa`, `cargo`, `email`, `whatsapp`, `funcionarios`, `segmento`, `consentimento` e `_subject`.
 
-Eventos (disparam só se a ferramenta correspondente estiver carregada):
+Eventos (o gtag envia ao GA4; o dataLayer fica disponível para o GTM; o Meta só recebe se `metaPixelId` estiver preenchido):
 
 - `lead_form_submit` — envio da Avaliação de Aderência (Meta: `Lead`)
 - `agendar_demonstracao` — CTA Agendar demonstração (Meta: `Schedule`)

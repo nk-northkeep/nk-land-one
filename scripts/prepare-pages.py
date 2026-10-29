@@ -6,6 +6,7 @@ from __future__ import annotations
 import html
 import json
 import os
+import re
 import shutil
 from pathlib import Path
 
@@ -34,9 +35,31 @@ PUBLISH_FILES = [
 PUBLISH_DIRS = ["design-system"]
 
 
-def env(name: str, default: str = "") -> str:
-    value = os.environ.get(name, "").strip()
-    return value or default
+CONFIG_KEYS = (
+    "siteUrl",
+    "gaMeasurementId",
+    "gtmContainerId",
+    "clarityProjectId",
+    "searchConsoleVerification",
+    "bingSiteVerification",
+    "metaPixelId",
+    "leadFormAction",
+)
+
+ENV_FOR = {
+    "siteUrl": "SITE_URL",
+    "gaMeasurementId": "GA_MEASUREMENT_ID",
+    "gtmContainerId": "GTM_CONTAINER_ID",
+    "clarityProjectId": "CLARITY_PROJECT_ID",
+    "searchConsoleVerification": "SEARCH_CONSOLE_VERIFICATION",
+    "bingSiteVerification": "BING_SITE_VERIFICATION",
+    "metaPixelId": "META_PIXEL_ID",
+    "leadFormAction": "LEAD_FORM_ACTION",
+}
+
+
+def env(name: str) -> str:
+    return os.environ.get(name, "").strip()
 
 
 def https_url(value: str) -> str:
@@ -45,20 +68,40 @@ def https_url(value: str) -> str:
     return ""
 
 
+def read_committed_config() -> dict[str, str]:
+    text = (ROOT / "site-config.js").read_text(encoding="utf-8")
+    config: dict[str, str] = {}
+    for key in CONFIG_KEYS:
+        match = re.search(rf"\b{re.escape(key)}\s*:\s*\"([^\"]*)\"", text)
+        if not match:
+            raise SystemExit(f"site-config.js sem {key}")
+        config[key] = match.group(1)
+    return config
+
+
+def apply_overrides(config: dict[str, str]) -> dict[str, str]:
+    """Variável de ambiente vazia mantém o valor commitado."""
+    out = dict(config)
+    for key, env_name in ENV_FOR.items():
+        raw = env(env_name)
+        if not raw:
+            continue
+        if key == "leadFormAction":
+            safe = https_url(raw)
+            if not safe:
+                print("LEAD_FORM_ACTION ignorado: informe uma URL https, sem espaços.")
+                continue
+            out[key] = safe
+            continue
+        if key == "siteUrl":
+            out[key] = raw.rstrip("/")
+            continue
+        out[key] = raw
+    return out
+
+
 def write_site_config(dest: Path) -> dict[str, str]:
-    config = {
-        "siteUrl": env("SITE_URL", "https://conheca.one.northkeep.com.br").rstrip("/"),
-        "gaMeasurementId": env("GA_MEASUREMENT_ID"),
-        "gtmContainerId": env("GTM_CONTAINER_ID"),
-        "clarityProjectId": env("CLARITY_PROJECT_ID"),
-        "searchConsoleVerification": env("SEARCH_CONSOLE_VERIFICATION"),
-        "bingSiteVerification": env("BING_SITE_VERIFICATION"),
-        "metaPixelId": env("META_PIXEL_ID"),
-        "leadFormAction": https_url(env("LEAD_FORM_ACTION")),
-    }
-    raw_form = env("LEAD_FORM_ACTION")
-    if raw_form and not config["leadFormAction"]:
-        print("LEAD_FORM_ACTION ignorado: informe uma URL https, sem espaços.")
+    config = apply_overrides(read_committed_config())
 
     js = json.dumps
     lines = [

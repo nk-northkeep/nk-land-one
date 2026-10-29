@@ -25,6 +25,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Prepare site
+        # Variável ausente ou vazia não apaga o valor commitado em site-config.js.
         env:
           SITE_URL: ${{ vars.SITE_URL }}
           GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID }}

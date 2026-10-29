@@ -1,6 +1,9 @@
 /**
- * Carrega apenas as ferramentas cujo ID foi definido em site-config.js.
- * GTM tem precedência sobre GA4 (o GA4 deve ser configurado dentro do GTM).
+ * Carrega só o que tiver ID em site-config.js.
+ * GA4 usa o dataLayer padrão (um page_view via gtag). O GTM usa outra fila
+ * (nkGtmLayer) para não reenviar esse page_view. Não crie no GTM uma tag do
+ * Google para o mesmo measurement ID, nem tags de evento GA4 com os mesmos
+ * nomes: a página já manda esses hits.
  */
 (function () {
   const cfg = window.NK_SITE_CONFIG || {};
@@ -22,7 +25,7 @@
   window.nkTrack = function nkTrack(eventName, params) {
     if (!eventName) return;
     const payload = Object.assign({ event: eventName }, params || {});
-    window.dataLayer.push(payload);
+    if (window.nkGtmLayer) window.nkGtmLayer.push(payload);
     if (typeof window.gtag === "function") {
       window.gtag("event", eventName, params || {});
     }
@@ -61,10 +64,26 @@
   appendMeta("google-site-verification", gscToken);
   appendMeta("msvalidate.01", bingToken);
 
+  if (gaId) {
+    preconnect("https://www.googletagmanager.com");
+    preconnect("https://www.google-analytics.com");
+    window.gtag = function gtag() {
+      window.dataLayer.push(arguments);
+    };
+    window.gtag("js", new Date());
+    window.gtag("config", gaId, { anonymize_ip: true });
+    loadScript("https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(gaId));
+  }
+
   if (gtmId) {
     preconnect("https://www.googletagmanager.com");
-    window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
-    loadScript("https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(gtmId));
+    window.nkGtmLayer = window.nkGtmLayer || [];
+    window.nkGtmLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+    loadScript(
+      "https://www.googletagmanager.com/gtm.js?id=" +
+        encodeURIComponent(gtmId) +
+        "&l=nkGtmLayer"
+    );
 
     const injectNoscript = function () {
       if (!document.body || document.getElementById("nk-gtm-noscript")) return;
@@ -79,15 +98,6 @@
 
     if (document.body) injectNoscript();
     else document.addEventListener("DOMContentLoaded", injectNoscript);
-  } else if (gaId) {
-    preconnect("https://www.googletagmanager.com");
-    preconnect("https://www.google-analytics.com");
-    window.gtag = function gtag() {
-      window.dataLayer.push(arguments);
-    };
-    window.gtag("js", new Date());
-    window.gtag("config", gaId, { anonymize_ip: true });
-    loadScript("https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(gaId));
   }
 
   if (clarityId) {
