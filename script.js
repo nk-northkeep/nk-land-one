@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const resumo = `Dor: ${dorLabelMap[dor]} | Dados: ${dadosLabelMap[dados]} | Objetivo: ${objetivoLabelMap[objetivo]}`;
       const ingestaoNota =
         dados === 'manual'
-          ? ' Com carga manual, o primeiro passo é organizar o recorte mínimo (faturamento, clientes, produtos e metas) antes de ampliar automações.'
+          ? ' Com planilha ou carga manual, a NorthKeep caminha com você desde o início para organizar faturamento, clientes, produtos e metas, e a primeira prioridade comercial aparece em seguida.'
           : '';
       texto.textContent = `${recomendacao}${ingestaoNota}`;
 
